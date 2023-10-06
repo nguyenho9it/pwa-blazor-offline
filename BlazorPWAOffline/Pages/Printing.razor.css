@@ -1,0 +1,17 @@
+﻿@media print {
+    html * {
+        display: none !important;
+    }
+
+    table, table * {
+        display: block !important;
+    }
+
+    table {
+        max-width: 500px;
+    }
+}
+
+.pdf-iframe {
+    display: none;
+}
