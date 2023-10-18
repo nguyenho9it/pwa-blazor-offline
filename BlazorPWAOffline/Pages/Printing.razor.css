@@ -19,9 +19,9 @@ body {
 }
 
 .bill {
-    width: 80%;
+/*    width: 80%;*/
     margin: 0 auto;
-    padding: 20px;
+/*    padding: 20px;*/
 }
 
 .bill-header {
@@ -50,6 +50,4 @@ body {
     text-align: right;
     font-weight: bold;
 }
-.pdf-iframe {
-    display: none;
-}
+
