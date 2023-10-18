@@ -33,11 +33,11 @@
       "url": "_framework\/icudt_no_CJK.dat"
     },
     {
-      "hash": "sha256-AMYMryTZuc3w2Yk4lvQ6C4SJQ2qG6SLU7S0cRiDoX6E=",
+      "hash": "sha256-U4ARIOJHnUkrGubLaGDp03X2ITcZyh7rqsWkBBGsNGQ=",
       "url": "_framework\/blazor.boot.json"
     },
     {
-      "hash": "sha256-lj0AqVHtSS9w3sYBSV8twZOrw0vWInjz8+4b7yF7ecE=",
+      "hash": "sha256-G4FZAU60TrPQdx7ViIlkYuysSJPuwhcGGuyoNdcy0Xo=",
       "url": "_framework\/BlazorPWAOffline.dll"
     },
     {
@@ -101,12 +101,16 @@
       "url": "_framework\/System.Collections.Concurrent.dll"
     },
     {
-      "hash": "sha256-xVNGjCRzvOpucfrD4u2A8pnMmbnmmAhEF6ch2BHniw4=",
+      "hash": "sha256-w8zP\/5mjXB\/8JdOfz1agg3dyp94pNGjKrXhFBoziI2w=",
       "url": "_framework\/System.Collections.dll"
     },
     {
       "hash": "sha256-7Q\/NXN65gE4JtXUu61hnC8nYnGpfPndS4I8Tds2v5uo=",
       "url": "_framework\/System.ComponentModel.dll"
+    },
+    {
+      "hash": "sha256-4Zo1xS8dXm5FJY+0o2v4tFM3S8we4dfOJJCh5WmZYf0=",
+      "url": "_framework\/System.Linq.dll"
     },
     {
       "hash": "sha256-qsm9FE0j4Y5V6SWkbHfEHmUTbqXocbTo56YzM0OBj9M=",
@@ -125,7 +129,7 @@
       "url": "_framework\/System.Net.Primitives.dll"
     },
     {
-      "hash": "sha256-c0DRKNPOhbnh6F8F1nfE9Mwkj2DjDV6OV109+AU7vig=",
+      "hash": "sha256-yHJ0xGopcVE2Nnxw07otqOH8Fcqfvg2Q2o0uj5H+K08=",
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
@@ -133,7 +137,7 @@
       "url": "_framework\/System.Private.Uri.dll"
     },
     {
-      "hash": "sha256-ufx1f7Lh4bu93n13w1jk6yG\/PoWzrKIZwaTQ\/mawot0=",
+      "hash": "sha256-Fgftt2W7dLJbd+AxVRCAJIoPM5PXiNo5+Di8UyD6fSo=",
       "url": "_framework\/System.Runtime.dll"
     },
     {
@@ -149,7 +153,7 @@
       "url": "_framework\/System.Text.Json.dll"
     },
     {
-      "hash": "sha256-sRXoGYaIWzaVFsgoe3THKJmVm9B4lOOaue1Xt22D1tc=",
+      "hash": "sha256-Unll9KvdkpwpV1IwMM\/x1aWKatechJ0NcIdFfqNsC24=",
       "url": "BlazorPWAOffline.styles.css"
     },
     {
@@ -213,7 +217,7 @@
       "url": "icon-512.png"
     },
     {
-      "hash": "sha256-q3VdlLFauuCzjYo1ZBH4pjp21U\/EdZCgFw0yFlSave4=",
+      "hash": "sha256-Eg2xpTkoSX4lswtWZ6viDNaE+7tEyBTSB08hojsTNOI=",
       "url": "index.html"
     },
     {
@@ -233,5 +237,5 @@
       "url": "online-data\/weather.json"
     }
   ],
-  "version": "t+LaEtpo"
+  "version": "w2e\/\/BID"
 };
