@@ -1,16 +1,10 @@
 ﻿@media print {
-   body * {
-      visibility: hidden;
-   }
+    body * {
+        visibility: hidden;
+    }
 
-   html * {
-      visibility: visible;
-   }
-
-    @page {
-        size: B5; /* You can use other standard page sizes like 'letter', 'legal', etc. */
-        margin: 1cm; /* Set margins as needed */
-
+    html * {
+        visibility: visible;
     }
 }
 
@@ -50,6 +44,4 @@ body {
     text-align: right;
     font-weight: bold;
 }
-.pdf-iframe {
-    display: none;
-}
+

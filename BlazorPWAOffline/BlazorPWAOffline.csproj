@@ -8,11 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Pages\Printing - Copy.razor.css" />
     <None Remove="Pages\Printing.razor.css" />
+    <None Remove="Pages\PrintingPdf.razor.css" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Pages\Printing.razor.css" />
+    <Content Include="Pages\PrintingPdf.razor.css" />
   </ItemGroup>
 
   <ItemGroup>

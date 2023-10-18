@@ -1,0 +1,62 @@
+﻿@page "/print-pdf"
+@inject IJSRuntime JSRuntime
+@inject HttpClient Http
+
+<PageTitle>Test Printing PDF</PageTitle>
+
+<h1>Test Printing PDF</h1>
+<br />
+
+<button class="btn btn-secondary" @onclick="PrintPdf">Print Pdf from local resource</button>
+<br />
+<br />
+<embeded class="pdf-iframe" src="offline-data/blazor.pdf" width="100%" height="600"></embeded>
+
+<script>
+    function printPdf() {
+        window.frames[0].print(); // Assuming your PDF is the first (index 0) iframe on the page
+    }
+</script>
+
+<button onclick="createReceipt()">Generate and Print Receipt</button>
+
+
+@code {
+    private async Task PrintPdf()
+    {
+        await JSRuntime.InvokeVoidAsync("printPdf");
+    }
+}
+
+<script>
+    function createReceipt() {
+        // Create a new jsPDF instance
+        const doc = new jsPDF();
+        // Define receipt content
+        const receiptContent = `
+                Receipt
+                ----------------------------------------
+                Date: October 10, 2023
+                Time: 10:30 AM
+
+                Items:
+                - Product A: $10.00
+                - Product B: $15.00
+
+                Total: $25.00
+                ----------------------------------------
+                Thank you for your purchase!
+            `;
+
+        // Set font size and add receipt content to the PDF
+        doc.setFontSize(12);
+        doc.text(receiptContent, 10, 10);
+
+        // Print the PDF
+        doc.autoPrint();
+        doc.output("dataurlnewwindow");
+    }
+</script>
+
+
+
