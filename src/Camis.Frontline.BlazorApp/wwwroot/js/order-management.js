@@ -1,13 +1,13 @@
 function readAllOrderDetails() {
-    return db.OrderDetails.toArray();
+    return database.OrderDetails.toArray();
 }
 
 function insertOrderDetail(orderDetail) {
-    db.OrderDetails.add(orderDetail);
+    database.OrderDetails.add(orderDetail);
 }
 
 function deleteOrderDetail(orderDetailId) {
-    db.OrderDetails.delete(orderDetailId);
+    database.OrderDetails.delete(orderDetailId);
 }
 
 function printOrder() {

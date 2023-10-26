@@ -76,7 +76,7 @@ window.indexedDB.loadUsers = async function () {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function read() {
-    var transaction = db.transaction(["employee"]);
+    var transaction = database.transaction(["employee"]);
     var objectStore = transaction.objectStore("employee");
     var request = objectStore.get("01");
 
@@ -95,7 +95,7 @@ function read() {
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function readAll() {
-    var objectStore = db.transaction("employee").objectStore("employee");
+    var objectStore = database.transaction("employee").objectStore("employee");
     var request = objectStore.getAll();
     return new Promise((resolve, reject) => {
         request.onsuccess = function (event) {
@@ -120,7 +120,7 @@ function readAll() {
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function add(employee) {
-    db.users.add(employee);
+    database.users.add(employee);
     //var request = db.transaction(["employee"], "readwrite")
     //    .objectStore("employee")
     //    .add(employee);
@@ -135,7 +135,7 @@ function add(employee) {
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function remove() {
-    var request = db.transaction(["employee"], "readwrite")
+    var request = database.transaction(["employee"], "readwrite")
         .objectStore("employee")
         .delete("01");
 

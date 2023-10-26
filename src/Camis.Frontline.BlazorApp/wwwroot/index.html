@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Blazor PWA</title>
+    <title>Frontline</title>
     <base href="/" />
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link href="css/app.css" rel="stylesheet" />
@@ -14,14 +14,8 @@
     <link rel="apple-touch-icon" sizes="512x512" href="icon-512.png" />
     <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
     <script src="lib/dexie.min.js"></script>
+    <script src="js/database-config.js"></script>
     <script src="js/order-management.js"></script>
-    <script>
-        //Define the database
-        var db = new Dexie("BlazorDemo");
-        db.version(1).stores({
-            OrderDetails: "++id, productId, productName, quantity, price, total"
-        });
-    </script>
 </head>
 
 <body>
@@ -34,16 +28,11 @@
     </div>
 
     <div id="blazor-error-ui">
-        You are offline!
+        Something went wrong!
         <a class="dismiss">🗙</a>
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
     <script>navigator.serviceWorker.register('service-worker.js');</script>
-
-    <!--<script>window.addEventListener('beforeunload', function (e) {
-            e.preventDefault();
-            e.returnValue = '';
-        });</script>-->
 </body>
 
 </html>
