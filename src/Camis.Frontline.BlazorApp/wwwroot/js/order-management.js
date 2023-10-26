@@ -13,3 +13,8 @@ function deleteOrderDetail(orderDetailId) {
 function printOrder() {
     window.print();
 }
+
+function openModal(modalId) {
+    const selectProductModal = new bootstrap.Modal(document.getElementById(modalId), {})
+    selectProductModal.show();
+}

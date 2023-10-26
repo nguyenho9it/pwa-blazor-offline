@@ -1,0 +1,25 @@
+﻿@page "/sales"
+@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+
+@using Camis.Frontline.BlazorApp.Models;
+
+<PageTitle>Sales</PageTitle>
+
+<div class="d-flex justify-content-between">
+    <h3>Sales</h3>
+    <button class="btn" @onclick="NavigateToCart"> <span class="oi oi-cart" aria-hidden="true"></span></button>
+</div>
+
+
+<div>
+    <ItemSelection></ItemSelection>
+</div>
+
+@code {
+    //navigate to cart
+    private void NavigateToCart()
+    {
+        NavigationManager.NavigateTo("/cart");
+    }
+}

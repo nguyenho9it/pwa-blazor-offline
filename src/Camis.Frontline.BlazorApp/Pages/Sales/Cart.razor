@@ -1,15 +1,13 @@
-﻿@page "/sales"
+﻿@page "/cart"
 @inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
 @using Camis.Frontline.BlazorApp.Models;
 
-<PageTitle>Sales</PageTitle>
+<PageTitle>Cart</PageTitle>
 
-<h3 class="d-print-none">Order Management</h3>
+<h3> <span class="oi oi-arrow-thick-left" aria-hidden="true" @onclick="BackToSale"></span> Cart</h3>
 
 <div>
-    <br />
-    <h3>Order Details</h3>
-
     @if (OrderDetails != null && OrderDetails.Count > 0)
     {
         <table class="table">
@@ -38,56 +36,25 @@
                     </tr>
                 }
             </tbody>
-            <tfoot>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>Total:</td>
-                    <td>@totalQuantity</td>
-                    <td>@total.ToString("C")</td>
-                    <td class="d-print-none"></td>
-                </tr>
-            </tfoot>
+
         </table>
+
+        <div class="d-flex justify-content-between">
+            <div>
+                <p>Total:</p>
+                <h3>@total.ToString("C")</h3>
+            </div>
+
+            <div class="pt-4">
+                <button class="btn btn-secondary">Checkout</button>
+            </div>
+        </div>
     }
     else
     {
-        <p>No order details found.</p>
+        <p>No product item found.</p>
     }
 </div>
-
-<div class="d-print-none">
-    <br />
-    <button class="btn btn-secondary" @onclick="ReadAll">Reload</button>
-    <button class="btn btn-secondary" @onclick="PrintOrder">Print</button>
-    <br />
-</div>
-
-<div class="form d-print-none">
-    @*      <div class="form-group">
-    <label for="productId">Product ID:</label>
-    <input type="text" class="form-control" id="productId" @bind="newOrderDetail.ProductId" required>
-    </div> *@
-    <div class="form-group">
-        <label for="productName">Product Name:</label>
-        <input type="text" class="form-control" id="productName" @bind="newOrderDetail.ProductName" required>
-    </div>
-    <div class="form-group">
-        <label for="quantity">Quantity:</label>
-        <input type="number" class="form-control" id="quantity" @bind="newOrderDetail.Quantity" required>
-    </div>
-    <div class="form-group">
-        <label for="price">Price:</label>
-        <input type="number" class="form-control" id="price" @bind="newOrderDetail.Price" required>
-    </div>
-    <br />
-    <button class="btn btn-primary" @onclick="AddOrderDetail">Add</button>
-</div>
-
-
-<script>
-
-</script>
 
 @code {
 
@@ -98,10 +65,8 @@
             await ReadAll();
             StateHasChanged();
         }
-
     }
 
-    private OrderDetail newOrderDetail = new OrderDetail();
     private double total;
     private double totalQuantity;
 
@@ -127,20 +92,15 @@
         OrderDetails = orderDetails;
     }
 
-    private async Task AddOrderDetail()
-    {
-        newOrderDetail.Id = Guid.NewGuid().ToString();
-        newOrderDetail.Total = newOrderDetail.Quantity * newOrderDetail.Price;
-        OrderDetails.Add(newOrderDetail);
-        await JSRuntime.InvokeVoidAsync("insertOrderDetail", newOrderDetail);
-        newOrderDetail = new OrderDetail();
-        await ReadAll();
-    }
-
     private async Task RemoveOrderDetail(OrderDetail orderDetail)
     {
         OrderDetails.Remove(orderDetail);
         await JSRuntime.InvokeVoidAsync("deleteOrderDetail", orderDetail.Id);
         await ReadAll();
+    }
+
+    private void BackToSale()
+    {
+        NavigationManager.NavigateTo("/sales");
     }
 }

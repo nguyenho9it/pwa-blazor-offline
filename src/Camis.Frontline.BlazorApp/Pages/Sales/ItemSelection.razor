@@ -1,0 +1,93 @@
+﻿@inject IJSRuntime JSRuntime
+@using Camis.Frontline.BlazorApp.Models;
+
+<PageTitle>Sales</PageTitle>
+
+<div class="row">
+    @foreach (var product in products)
+    {
+        <div class="col-md-2">
+            <div class="card mb-3" @onclick="() => OpenProductModal(product)">
+                <img src="@product.Image" class="card-img-top" alt="@product.Name">
+                <div class="card-body">
+                    <h5 class="card-title">@product.Name</h5>
+                    <p class="card-text">Price: $@product.Price</p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<!-- Modal -->
+<!-- Modal -->
+<div class="modal fade" id="productModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">@selectedProduct?.Name</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Price: $@selectedProduct?.Price</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" @onclick="AddToCard">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+</script>
+
+@code {
+    private List<Product> products;
+    protected override void OnInitialized()
+    {
+        // Initialize the list of products (you can load this data from a database or an API)
+        products = new List<Product>
+        {
+            new Product { Id = "1", Name = "Product 1", Image = "images/tent.png", Price = 19.99 },
+            new Product { Id = "2", Name = "Product 2", Image = "images/tent.png", Price = 24.99 },
+new Product { Id = "3", Name = "Product 3", Image = "images/tent.png", Price = 29.99 },
+new Product { Id = "4", Name = "Product 4", Image = "images/tent.png", Price = 34.99 },
+new Product { Id = "5", Name = "Product 5", Image = "images/tent.png", Price = 39.99 },
+new Product { Id = "6", Name = "Product 6", Image = "images/tent.png", Price = 44.99 },
+new Product { Id = "7", Name = "Product 7", Image = "images/tent.png", Price = 49.99 },
+new Product { Id = "8", Name = "Product 8", Image = "images/tent.png", Price = 54.99 },
+new Product { Id = "9", Name = "Product 9", Image = "images/tent.png", Price = 59.99 },
+new Product { Id = "10", Name = "Product 10", Image = "images/tent.png", Price = 64.99 },
+            // Add more products here
+        };
+    }
+
+
+    private Product selectedProduct; // Variable to store the selected product
+    private OrderDetail newOrderDetail = new OrderDetail();
+
+    void OpenProductModal(Product product)
+    {
+        selectedProduct = product; // Set the selected product
+                                   // Use JavaScript Interop to show the modal
+        JSRuntime.InvokeVoidAsync("openModal", "productModal");
+    }
+
+    private async Task AddToCard()
+    {
+        var quantity = 1;
+        newOrderDetail = new OrderDetail()
+            {
+                Id = Guid.NewGuid().ToString(),
+                ProductId = selectedProduct.Id,
+                Quantity = quantity,
+                ProductName = selectedProduct.Name,
+                Price = selectedProduct.Price,
+                Total = quantity * selectedProduct.Price
+            };
+
+        await JSRuntime.InvokeVoidAsync("insertOrderDetail", newOrderDetail);
+        newOrderDetail = new OrderDetail();
+    }
+}
