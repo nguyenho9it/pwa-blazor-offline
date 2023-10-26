@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Camis.Frontline.BlazorApp", "src\Camis.Frontline.BlazorApp\Camis.Frontline.BlazorApp.csproj", "{269C66A2-5594-4D10-8AC6-6C41D6212D12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Camis.Frontline.API", "src\Camis.Frontline.API\Camis.Frontline.API.csproj", "{9480095F-EDB2-49A3-8F82-B66EB74400E4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{269C66A2-5594-4D10-8AC6-6C41D6212D12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{269C66A2-5594-4D10-8AC6-6C41D6212D12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{269C66A2-5594-4D10-8AC6-6C41D6212D12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{269C66A2-5594-4D10-8AC6-6C41D6212D12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9480095F-EDB2-49A3-8F82-B66EB74400E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9480095F-EDB2-49A3-8F82-B66EB74400E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9480095F-EDB2-49A3-8F82-B66EB74400E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9480095F-EDB2-49A3-8F82-B66EB74400E4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B60D16A9-D320-4544-A97A-E8B9352BCC9D}
+	EndGlobalSection
+EndGlobal
