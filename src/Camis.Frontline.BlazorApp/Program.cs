@@ -1,5 +1,5 @@
-using BlazorPWAOffline;
 
+using Camis.Frontline.BlazorApp;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 

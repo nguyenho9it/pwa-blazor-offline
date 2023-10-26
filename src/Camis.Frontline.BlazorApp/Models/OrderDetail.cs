@@ -1,4 +1,4 @@
-﻿namespace BlazorPWAOffline.Models
+﻿namespace Camis.Frontline.BlazorApp.Models
 {
     public class OrderDetail
     {
