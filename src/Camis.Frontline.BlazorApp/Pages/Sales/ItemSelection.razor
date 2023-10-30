@@ -6,7 +6,7 @@
 <div class="row">
     @foreach (var product in products)
     {
-        <div class="col-md-2">
+        <div class="col-sm-12 col-md-4 col-lg-2">
             <div class="card mb-3" @onclick="() => OpenProductModal(product)">
                 <img src="@product.Image" class="card-img-top" alt="@product.Name">
                 <div class="card-body">
@@ -20,19 +20,20 @@
 
 <!-- Modal -->
 <!-- Modal -->
-<div class="modal fade" id="productModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="selectedProductModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">@selectedProduct?.Name</h1>
+                <h1 class="modal-title fs-5">@selectedProduct?.Name</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>Price: $@selectedProduct?.Price</p>
+                <input class="form-control" type="number" @bind="quantity" />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" @onclick="AddToCard">Add to Cart</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @onclick="AddToCard">Add to Cart</button>
             </div>
         </div>
     </div>
@@ -44,6 +45,7 @@
 
 @code {
     private List<Product> products;
+    private double quantity = 1;
     protected override void OnInitialized()
     {
         // Initialize the list of products (you can load this data from a database or an API)
@@ -69,14 +71,16 @@ new Product { Id = "10", Name = "Product 10", Image = "images/tent.png", Price =
 
     void OpenProductModal(Product product)
     {
-        selectedProduct = product; // Set the selected product
-                                   // Use JavaScript Interop to show the modal
-        JSRuntime.InvokeVoidAsync("openModal", "productModal");
+        selectedProduct = product;
+        JSRuntime.InvokeVoidAsync("openModal");
     }
 
     private async Task AddToCard()
     {
-        var quantity = 1;
+        if (quantity <= 0)
+        {
+            quantity = 1;
+        }
         newOrderDetail = new OrderDetail()
             {
                 Id = Guid.NewGuid().ToString(),

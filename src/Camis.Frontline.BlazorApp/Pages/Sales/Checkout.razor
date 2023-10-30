@@ -1,11 +1,10 @@
-﻿@page "/cart"
+﻿@page "/checkout"
 @inject IJSRuntime JSRuntime
 @inject NavigationManager NavigationManager
 @using Camis.Frontline.BlazorApp.Models;
 
-<PageTitle>Cart</PageTitle>
+<PageTitle>Checkout</PageTitle>
 
-<h3 class="d-print-none"> <span class="oi oi-arrow-thick-left" aria-hidden="true" @onclick="BackToSale"></span> Cart</h3>
 
 <div>
     @if (OrderDetails != null && OrderDetails.Count > 0)
@@ -13,26 +12,20 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Product ID</th>
                     <th>Product Name</th>
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Total</th>
-                    <th class="d-print-none"></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var orderDetail in OrderDetails)
                 {
                     <tr>
-                        <td>@orderDetail.ProductId</td>
                         <td>@orderDetail.ProductName</td>
                         <td>@orderDetail.Price.ToString("C")</td>
                         <td>@orderDetail.Quantity</td>
                         <td>@orderDetail.Total.ToString("C")</td>
-                        <td class="d-print-none">
-                            <button class="btn btn-danger" @onclick="() => RemoveOrderDetail(orderDetail)">Remove</button>
-                        </td>
                     </tr>
                 }
             </tbody>
@@ -46,7 +39,7 @@
             </div>
 
             <div class="pt-4 d-print-none">
-                <button class="btn btn-secondary me-2" @onclick=PrintOrder>Print</button>  <button class="btn btn-secondary" @onclick=ProcessCheckout>Checkout</button>
+                <button class="btn btn-secondary" @onclick=PrintOrder>Print</button>
             </div>
         </div>
     }
@@ -64,6 +57,7 @@
         {
             await ReadAll();
             StateHasChanged();
+            await PrintOrder();
         }
     }
 
@@ -90,23 +84,5 @@
             totalQuantity += orderDetail.Quantity;
         }
         OrderDetails = orderDetails;
-    }
-
-    private async Task RemoveOrderDetail(OrderDetail orderDetail)
-    {
-        OrderDetails.Remove(orderDetail);
-        await JSRuntime.InvokeVoidAsync("deleteOrderDetail", orderDetail.Id);
-        await ReadAll();
-    }
-
-
-    private void ProcessCheckout()
-    {
-        // NavigationManager.NavigateTo("/checkout");
-    }
-
-    private void BackToSale()
-    {
-        NavigationManager.NavigateTo("/sales");
     }
 }
