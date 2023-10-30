@@ -5,7 +5,7 @@
 
 <PageTitle>Cart</PageTitle>
 
-<h3 class="d-print-none"> <span class="oi oi-arrow-thick-left" aria-hidden="true" @onclick="BackToSale"></span> Cart</h3>
+<h3 class="d-print-none"> <span class="oi oi-arrow-thick-left" aria-hidden="true" @onclick="BackToSale"></span> <span> Cart</span></h3>
 
 <div>
     @if (OrderDetails != null && OrderDetails.Count > 0)
@@ -13,7 +13,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Product ID</th>
+                    <th class="d-print-none">Product ID</th>
                     <th>Product Name</th>
                     <th>Price</th>
                     <th>Quantity</th>
@@ -25,13 +25,13 @@
                 @foreach (var orderDetail in OrderDetails)
                 {
                     <tr>
-                        <td>@orderDetail.ProductId</td>
+                        <td class="d-print-none">@orderDetail.ProductId</td>
                         <td>@orderDetail.ProductName</td>
                         <td>@orderDetail.Price.ToString("C")</td>
                         <td>@orderDetail.Quantity</td>
                         <td>@orderDetail.Total.ToString("C")</td>
                         <td class="d-print-none">
-                            <button class="btn btn-danger" @onclick="() => RemoveOrderDetail(orderDetail)">Remove</button>
+                            <button class="btn p-0" @onclick="() => RemoveOrderDetail(orderDetail)"><span class="oi oi-x"></span></button>
                         </td>
                     </tr>
                 }
@@ -107,6 +107,6 @@
 
     private void BackToSale()
     {
-        NavigationManager.NavigateTo("/sales");
+        NavigationManager.NavigateTo("/");
     }
 }

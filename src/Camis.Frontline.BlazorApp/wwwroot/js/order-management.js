@@ -3,7 +3,7 @@ function readAllOrderDetails() {
     return database.OrderDetails.toArray();
 }
 
-function insertOrderDetail(orderDetail, isCloseModal = true) {
+function insertOrderItem(orderDetail, isCloseModal = true) {
     database.OrderDetails.add(orderDetail);
     if (isCloseModal) {
         closeModal();

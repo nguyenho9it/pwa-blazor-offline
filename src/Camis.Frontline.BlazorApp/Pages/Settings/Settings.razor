@@ -3,9 +3,11 @@
 
 <PageTitle>Bluetooth connections</PageTitle>
 
-<h3>Settings</h3>
+<h3 class="text-center pb-4">Settings</h3>
 
-<button class="btn btn-primary" @onclick="DiscoverDevices">Discover Devices</button>
+<div class="text-center pb-2">
+    <button class="btn btn-outline-secondary" @onclick="DiscoverDevices">Discover Devices</button>
+</div>
 
 @if (devices != null && devices.Any())
 {
@@ -15,7 +17,7 @@
         {
             <li>
                 @device.Name
-                <button class="btn btn-primary" @onclick="() => ConnectToDevice(device)">Connect</button>
+                <button class="btn btn-outline-primary" @onclick="() => ConnectToDevice(device)">Connect</button>
             </li>
         }
     </ul>
@@ -23,9 +25,8 @@
 @if (selectedDevice != null)
 {
     <h4>Selected Device Info</h4>
-    <p>Name: @selectedDevice.Name</p>
-    <p>ID: @selectedDevice.Id</p>
-    <!-- Display more device information as needed -->
+    <p>Name: @selectedDevice?.Name</p>
+    <p>ID: @selectedDevice?.Id</p>
 }
 else if (devices != null)
 {
@@ -37,69 +38,43 @@ else if (devices != null)
     function discoverBluetoothDevices() {
         return navigator.bluetooth.requestDevice({ acceptAllDevices: true })
             .then(device => {
-                return [{ Name: device.name, Id: device.id }]; // Modify the structure as needed
+                return [{ Name: device.name, Id: device.id }];
             })
             .catch(error => {
                 console.error(error);
                 return [];
             });
     }
-
 </script>
 
 @code {
 
     private List<BluetoothDevice> devices = new List<BluetoothDevice>();
-    private BluetoothDevice selectedDevice;
+    private BluetoothDevice? selectedDevice = null;
 
     private async Task DiscoverDevices()
     {
 
-        var newdevices = await GetDevices();
-        if (newdevices != null && newdevices.Any())
+        var newDevice = await GetDevices();
+        if (newDevice != null && newDevice.Any())
         {
-            devices.AddRange(newdevices);
+            devices.AddRange(newDevice);
         };
     }
 
     private async Task<List<BluetoothDevice>> GetDevices()
     {
-        // Use JavaScript interop to call the Web Bluetooth API for device discovery.
         return await JSRuntime.InvokeAsync<List<BluetoothDevice>>("discoverBluetoothDevices");
     }
 
     private void ConnectToDevice(BluetoothDevice device)
     {
         selectedDevice = device;
-        // You can perform additional actions to interact with the selected device here.
     }
 
-    // private string serviceUuid = "";
-    // public List<BluetoothDevice> devices;
-
-    // private async Task DiscoverDevices()
-    // {
-    //     devices = await GetDevicesByServiceUuid(serviceUuid);
-    // }
-
-    // public async Task<List<BluetoothDevice>> GetDevicesByServiceUuid(string serviceUuid)
-    // {
-    //     Use JavaScript interop to call the Web Bluetooth API with the provided serviceUuid.
-    //     Return an array of discovered Bluetooth devices.
-    //     You need to implement the JavaScript function to handle Bluetooth device discovery.
-    //     var input = new object[] { serviceUuid };
-    //     await JSRuntime.InvokeVoidAsync("printTable");
-    //     return new List<BluetoothDevice>();
-    //     return await JSRuntime.InvokeAsync<List<BluetoothDevice>>("getDevicesByServiceUuid", input);
-    // }
 
     public class BluetoothDevice
     {
-        public BluetoothDevice()
-        {
-
-        }
-
         public string Name { get; set; }
         public string Id { get; set; }
     }

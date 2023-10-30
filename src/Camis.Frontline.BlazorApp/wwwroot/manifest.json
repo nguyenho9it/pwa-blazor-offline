@@ -1,6 +1,6 @@
 {
-  "name": "Blazor PWA Offline Demo",
-  "short_name": "Blazor PWA Offline",
+  "name": "Frontline",
+  "short_name": "Frontline",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",

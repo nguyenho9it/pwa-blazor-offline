@@ -1,0 +1,122 @@
+﻿[
+  {
+    "Id": "1",
+    "Name": "Camping Tent 2-Person",
+    "Image": "images/tent.png",
+    "Price": 79.99
+  },
+  {
+    "Id": "2",
+    "Name": "Family Cabin Tent",
+    "Image": "images/tent.png",
+    "Price": 149.99
+  },
+  {
+    "Id": "3",
+    "Name": "Ultralight Backpacking Tent",
+    "Image": "images/tent.png",
+    "Price": 129.95
+  },
+  {
+    "Id": "4",
+    "Name": "Pop-Up Beach Tent",
+    "Image": "images/tent.png",
+    "Price": 49.99
+  },
+  {
+    "Id": "5",
+    "Name": "4-Season Mountaineering Tent",
+    "Image": "images/tent.png",
+    "Price": 249.99
+  },
+  {
+    "Id": "6",
+    "Name": "Dome Tent with Screen Room",
+    "Image": "images/tent.png",
+    "Price": 109.99
+  },
+  {
+    "Id": "7",
+    "Name": "Hiking Tent for 2 Persons",
+    "Image": "images/tent.png",
+    "Price": 89.99
+  },
+  {
+    "Id": "8",
+    "Name": "Beach Shelter with UV Protection",
+    "Image": "images/tent.png",
+    "Price": 69.95
+  },
+  {
+    "Id": "9",
+    "Name": "Backpacking Hammock Tent",
+    "Image": "images/tent.png",
+    "Price": 69.99
+  },
+  {
+    "Id": "10",
+    "Name": "Large Family Tent with Dividers",
+    "Image": "images/tent.png",
+    "Price": 189.99
+  },
+  {
+    "Id": "11",
+    "Name": "3-Season Backpacking Tent",
+    "Image": "images/tent.png",
+    "Price": 119.99
+  },
+  {
+    "Id": "12",
+    "Name": "Instant Cabin Tent",
+    "Image": "images/tent.png",
+    "Price": 179.95
+  },
+  {
+    "Id": "13",
+    "Name": "Compact Pop-Up Tent",
+    "Image": "images/tent.png",
+    "Price": 59.99
+  },
+  {
+    "Id": "14",
+    "Name": "Tarp Shelter for Camping",
+    "Image": "images/tent.png",
+    "Price": 39.99
+  },
+  {
+    "Id": "15",
+    "Name": "Tent Footprint Ground Cloth",
+    "Image": "images/tent.png",
+    "Price": 19.99
+  },
+  {
+    "Id": "16",
+    "Name": "Camping Cot with Tent",
+    "Image": "images/tent.png",
+    "Price": 149.95
+  },
+  {
+    "Id": "17",
+    "Name": "4-Person Tunnel Tent",
+    "Image": "images/tent.png",
+    "Price": 199.99
+  },
+  {
+    "Id": "18",
+    "Name": "Ultralight Bivy Sack",
+    "Image": "images/tent.png",
+    "Price": 59.95
+  },
+  {
+    "Id": "19",
+    "Name": "Tent Repair Kit",
+    "Image": "images/tent.png",
+    "Price": 14.99
+  },
+  {
+    "Id": "20",
+    "Name": "Tent Stakes and Guylines Set",
+    "Image": "images/tent.png",
+    "Price": 9.99
+  }
+]

@@ -6,7 +6,7 @@
 <div class="row">
     @foreach (var product in products)
     {
-        <div class="col-sm-12 col-md-4 col-lg-2">
+        <div class="col-6 col-sm-12 col-md-4 col-lg-2">
             <div class="card mb-3" @onclick="() => OpenProductModal(product)">
                 <img src="@product.Image" class="card-img-top" alt="@product.Name">
                 <div class="card-body">
@@ -19,7 +19,6 @@
 </div>
 
 <!-- Modal -->
-<!-- Modal -->
 <div class="modal fade" id="selectedProductModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -29,7 +28,7 @@
             </div>
             <div class="modal-body">
                 <p>Price: $@selectedProduct?.Price</p>
-                <input class="form-control" type="number" @bind="quantity" />
+                <input class="form-control" type="number" @bind="selectedProductQuantity" />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -39,35 +38,35 @@
     </div>
 </div>
 
-<script>
-
-</script>
 
 @code {
-    private List<Product> products;
-    private double quantity = 1;
-    protected override void OnInitialized()
-    {
-        // Initialize the list of products (you can load this data from a database or an API)
-        products = new List<Product>
+    private List<Product> products = new List<Product>
         {
-            new Product { Id = "1", Name = "Product 1", Image = "images/tent.png", Price = 19.99 },
-            new Product { Id = "2", Name = "Product 2", Image = "images/tent.png", Price = 24.99 },
-new Product { Id = "3", Name = "Product 3", Image = "images/tent.png", Price = 29.99 },
-new Product { Id = "4", Name = "Product 4", Image = "images/tent.png", Price = 34.99 },
-new Product { Id = "5", Name = "Product 5", Image = "images/tent.png", Price = 39.99 },
-new Product { Id = "6", Name = "Product 6", Image = "images/tent.png", Price = 44.99 },
-new Product { Id = "7", Name = "Product 7", Image = "images/tent.png", Price = 49.99 },
-new Product { Id = "8", Name = "Product 8", Image = "images/tent.png", Price = 54.99 },
-new Product { Id = "9", Name = "Product 9", Image = "images/tent.png", Price = 59.99 },
-new Product { Id = "10", Name = "Product 10", Image = "images/tent.png", Price = 64.99 },
-            // Add more products here
+            new Product { Id = "1", Name = "Camping Tent 2-Person", Image = "images/tent.png", Price = 79.99 },
+            new Product { Id = "2", Name = "Family Cabin Tent", Image = "images/tent.png", Price = 149.99 },
+            new Product { Id = "3", Name = "Ultralight Backpacking Tent", Image = "images/tent.png", Price = 129.95 },
+            new Product { Id = "4", Name = "Pop-Up Beach Tent", Image = "images/tent.png", Price = 49.99 },
+            new Product { Id = "5", Name = "4-Season Mountaineering Tent", Image = "images/tent.png", Price = 249.99 },
+            new Product { Id = "6", Name = "Dome Tent with Screen Room", Image = "images/tent.png", Price = 109.99 },
+            new Product { Id = "7", Name = "Hiking Tent for 2 Persons", Image = "images/tent.png", Price = 89.99 },
+            new Product { Id = "8", Name = "Beach Shelter with UV Protection", Image = "images/tent.png", Price = 69.95 },
+            new Product { Id = "9", Name = "Backpacking Hammock Tent", Image = "images/tent.png", Price = 69.99 },
+            new Product { Id = "10", Name = "Large Family Tent with Dividers", Image = "images/tent.png", Price = 189.99 },
+            new Product { Id = "11", Name = "3-Season Backpacking Tent", Image = "images/tent.png", Price = 119.99 },
+            new Product { Id = "12", Name = "Instant Cabin Tent", Image = "images/tent.png", Price = 179.95 },
+            new Product { Id = "13", Name = "Compact Pop-Up Tent", Image = "images/tent.png", Price = 59.99 },
+            new Product { Id = "14", Name = "Tarp Shelter for Camping", Image = "images/tent.png", Price = 39.99 },
+            new Product { Id = "15", Name = "Tent Footprint Ground Cloth", Image = "images/tent.png", Price = 19.99 },
+            new Product { Id = "16", Name = "Camping Cot with Tent", Image = "images/tent.png", Price = 149.95 },
+            new Product { Id = "17", Name = "4-Person Tunnel Tent", Image = "images/tent.png", Price = 199.99 },
+            new Product { Id = "18", Name = "Ultralight Bivy Sack", Image = "images/tent.png", Price = 59.95 },
+            new Product { Id = "19", Name = "Tent Repair Kit", Image = "images/tent.png", Price = 14.99 },
+            new Product { Id = "20", Name = "Tent Stakes and Guylines Set", Image = "images/tent.png", Price = 9.99 },
         };
-    }
 
-
-    private Product selectedProduct; // Variable to store the selected product
-    private OrderDetail newOrderDetail = new OrderDetail();
+    private double selectedProductQuantity = 1;
+    private Product selectedProduct = new Product();
+    private OrderDetail orderItem = new OrderDetail();
 
     void OpenProductModal(Product product)
     {
@@ -77,21 +76,38 @@ new Product { Id = "10", Name = "Product 10", Image = "images/tent.png", Price =
 
     private async Task AddToCard()
     {
-        if (quantity <= 0)
-        {
-            quantity = 1;
-        }
-        newOrderDetail = new OrderDetail()
+        ValidateSelectedProduct();
+        await InsertOrderItemToDB();
+        ResetSelectedProduct();
+    }
+
+    private async Task InsertOrderItemToDB()
+    {
+        orderItem = new OrderDetail()
             {
                 Id = Guid.NewGuid().ToString(),
                 ProductId = selectedProduct.Id,
-                Quantity = quantity,
                 ProductName = selectedProduct.Name,
                 Price = selectedProduct.Price,
-                Total = quantity * selectedProduct.Price
+                Quantity = selectedProductQuantity,
+                Total = selectedProductQuantity * selectedProduct.Price
             };
 
-        await JSRuntime.InvokeVoidAsync("insertOrderDetail", newOrderDetail);
-        newOrderDetail = new OrderDetail();
+        await JSRuntime.InvokeVoidAsync("insertOrderItem", orderItem);
+    }
+
+    private void ValidateSelectedProduct()
+    {
+        if (selectedProductQuantity <= 0)
+        {
+            selectedProductQuantity = 1;
+        }
+    }
+
+    private void ResetSelectedProduct()
+    {
+        selectedProductQuantity = 1;
+        orderItem = new OrderDetail();
+        StateHasChanged();
     }
 }
