@@ -7,12 +7,8 @@ namespace Camis.Frontline.API.Controllers
     [Route("products")]
     public class ProductController : ControllerBase
     {
-
-        private readonly ILogger<ProductController> _logger;
-
-        public ProductController(ILogger<ProductController> logger)
+        public ProductController()
         {
-            _logger = logger;
         }
 
         [HttpGet(Name = "products")]
